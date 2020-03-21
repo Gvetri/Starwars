@@ -8,7 +8,7 @@ object Apps {
 }
 
 object Versions {
-    const val gradle = "3.6.0-rc02"
+    const val gradle = "3.6.1"
     const val kotlin = "1.3.50"
     const val appcompat = "1.1.0"
     const val coreKtx = "1.2.0-rc01"

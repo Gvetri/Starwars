@@ -15,6 +15,22 @@ android {
         versionName = Apps.versionName
         testInstrumentationRunner = Apps.testInstrumentationRunner
     }
+    flavorDimensions("default")
+
+    productFlavors {
+        create("develop") {
+            applicationId = "com.codingpizza.starwars.develop"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
+        create("staging") {
+            applicationId = "com.codingpizza.starwars.staging"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
+        create("production") {
+            applicationId = "com.codingpizza.starwars"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
