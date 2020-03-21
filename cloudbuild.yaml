@@ -2,25 +2,26 @@ steps:
   - name: gcr.io/cloud-builders/gsutil
     # we use rsync and not cp so that the step does not fail the first time it is run
     args: ['rsync', 'gs://gradle_cache_$PROJECT_ID/', '.']
-  - name: 'gcr.io/$PROJECT_ID/android-builder:latest'
+  - name: 'gcr.io/$PROJECT_ID/android-builder:29'
     id: 'ktLint'
     entrypoint: 'gradle-build'
     args: ['-g', '.gradle', 'ktlintCheck']
-  - name: 'gcr.io/$PROJECT_ID/android-builder:latest'
+  - name: 'gcr.io/$PROJECT_ID/android-builder:29'
     id: 'detekt'
     entrypoint: 'gradle-build'
     args: ['-g', '.gradle', 'detekt']
-  - name: 'gcr.io/$PROJECT_ID/android-builder:latest'
+  - name: 'gcr.io/$PROJECT_ID/android-builder:29'
     id: 'test'
     entrypoint: 'gradle-build'
     args: ['-g', '.gradle', 'test']
   - name: gcr.io/cloud-builders/gsutil
     id: 'Storing gradle cache'
     args: ['cp', 'cache.zip', 'gs://gradle_cache_$PROJECT_ID/cache.zip']
-  - name: 'gcr.io/$PROJECT_ID/android-builder:latest'
+  - name: 'gcr.io/$PROJECT_ID/android-builder:29'
     id: 'Assemble'
     entrypoint: 'gradle-build'
     args: ['-g', '.gradle', 'assemble']
   - name: 'gcr.io/cloud-builders/gsutil'
     id: 'Storing Apks...'
     args: ['cp', '-r', 'app/build/outputs/apk', 'gs://apkstorage/$BRANCH_NAME-$BUILD_ID/']
+timeout: 1200s

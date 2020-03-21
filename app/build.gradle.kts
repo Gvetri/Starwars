@@ -7,6 +7,8 @@ plugins {
 
 android {
     compileSdkVersion(Apps.compileSdk)
+    buildToolsVersion = Apps.buildToolsVersion
+
     defaultConfig {
         applicationId = "com.codingpizza.starwars"
         minSdkVersion(Apps.minSdk)
