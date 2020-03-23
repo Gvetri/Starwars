@@ -4,11 +4,12 @@ object Apps {
     const val targetSdk = 29
     const val versionCode = 1
     const val versionName = "1.0.0"
+    const val buildToolsVersion = "29.0.2"
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
 
 object Versions {
-    const val gradle = "3.6.0-beta04"
+    const val gradle = "3.6.1"
     const val kotlin = "1.3.50"
     const val appcompat = "1.1.0"
     const val coreKtx = "1.2.0-rc01"

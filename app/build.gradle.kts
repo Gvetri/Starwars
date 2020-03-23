@@ -7,6 +7,8 @@ plugins {
 
 android {
     compileSdkVersion(Apps.compileSdk)
+    buildToolsVersion = Apps.buildToolsVersion
+
     defaultConfig {
         applicationId = "com.codingpizza.starwars"
         minSdkVersion(Apps.minSdk)
@@ -14,6 +16,22 @@ android {
         versionCode = Apps.versionCode
         versionName = Apps.versionName
         testInstrumentationRunner = Apps.testInstrumentationRunner
+    }
+    flavorDimensions("default")
+
+    productFlavors {
+        create("develop") {
+            applicationId = "com.codingpizza.starwars.develop"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
+        create("staging") {
+            applicationId = "com.codingpizza.starwars.staging"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
+        create("production") {
+            applicationId = "com.codingpizza.starwars"
+            resValue("string","secret",System.getenv("SECRET") ?: "")
+        }
     }
     buildTypes {
         getByName("release") {
